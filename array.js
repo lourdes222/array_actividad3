@@ -3,33 +3,42 @@ let personas=[
     {   
         nombre:'grecia',
         edad:19,
-        dni:48
+        dni:484848
     },
     {
         nombre:'pamela',
         edad:18,
-        dni:47
+        dni:474747
     },
     {
         nombre:'lourdes',
         edad:17,
-        dni:46
+        dni:464646
     },
     {   
         nombre:'grecia',
         edad:12,
-        dni:11
+        dni:111111
     }
 ]
-console.log(personas)
-personas.forEach(p=>console.log(p.nombre))
+// console.log(personas)
+
+//1. mostrarPersonas()
+const mostrarPersonas = () => {
+    personas.forEach(p=>console.log(`nombre: ${p.nombre}, ${p.edad}, ${p.dni}`))
+}
+mostrarPersonas()
+
 //2.agregar item
+
 personas.push(
     {nombre:'morena',
     edad:16,
     dni:45
     })
 personas.forEach(p=>console.log(p)) 
+
+
 //3.buscarPersona x dni
 const buscarPorDni=(dniABuscar)=>{
     let encontrado=personas.find(p=>p.dni==dniABuscar);
@@ -38,18 +47,46 @@ const buscarPorDni=(dniABuscar)=>{
     }else{
         console.log("no se encontró ese dni")
     }
-}; buscarPorDni(47);
+};
+buscarPorDni(474747);
+
+
 //4.buscarPersona x nombre
 const buscarPorNombre=(nombreABuscar)=>{
     let encontrado=personas.filter(n=>n.nombre==nombreABuscar);
-    if(encontrado){
-        console.log("nombre encontrado:",encontrado.nombre);
+    if (encontrado.length>0){
+        console.log("Personas encontradas: ");
+        encontrado.forEach(e => console.log(e.nombre, e.edad))
     }else{
-        console.log("el nombre no está en la lista");
+        console.log("el nombre no esta en la lista");
     }
-}; buscarPorNombre('grecia')
+};
+ buscarPorNombre('grecia')
+
+
 //5.eliminarPersona x dni
 const eliminarPorDni=(dniAEliminar)=>{
-    let indice=personas.findIndex()
-}
+    let indice=personas.findIndex(p=>p.dni == dniAEliminar);
+
+    if (indice != -1){
+        personas.splice(indice, 1);
+        console.log(`persona con dni ${dniAEliminar} eliminada.`);
+        mostrarPersonas()
+    } else{
+        console.log("no se encontró a nadie con ese dni a eliminar.");
+    }
+}; 
+eliminarPorDni(474747)
+
 //6.actualizar o modificar
+const actualizar = (nuevoNombre, nuevaEdad, dniABuscar) => {
+    let persona = personas.find (p=> p.dni == dniABuscar);
+    if (persona) {
+        persona.edad = nuevaEdad;
+        persona.nombre = nuevoNombre
+        console.log(`Datos actualizados, edad: ${nuevaEdad}, nombre: ${nuevoNombre}`);
+    } else {
+        console.log(" no se pudo actualizar: dni no encontrado");
+    }
+};
+actualizar("grecia luz", 20, 484848)
